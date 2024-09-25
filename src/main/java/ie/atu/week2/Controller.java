@@ -1,24 +1,21 @@
 package ie.atu.week2;
 
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class Controller {
-    private List<Product> products = new ArrayList<Product>();
+    Service service = new Service();
 
     @GetMapping("/get")
     public List<Product> getProducts() {
-        return products;
+        return service.getProductList();
     }
 
     @PostMapping("/add")
     public String addProduct(@RequestBody Product product) {
-        products.add(product);
-        return "Product Added";
+        return service.addProduct(product);
     }
 
 }

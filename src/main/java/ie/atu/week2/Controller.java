@@ -21,5 +21,26 @@ public class Controller {
         products.add(product);
         return service.addProduct(product);
     }
+    @DeleteMapping("/delete")
+    public String deleteProductByPrice(@RequestParam double price) {
+        Product productToRemove = null;
+
+        // Find the product with the matching price
+        for (Product product : products) {
+            if (product.getPrice() == price) {
+                productToRemove = product;
+                break; // Stop after finding the first match
+            }
+        }
+
+        // If a product is found, remove it
+        if (productToRemove != null) {
+            products.remove(productToRemove);
+            return service.removeProduct(productToRemove); // Inform the service
+        } else {
+            return "Product not found!"; // Handle case when no product matches the price
+        }
+    }
+
 
 }

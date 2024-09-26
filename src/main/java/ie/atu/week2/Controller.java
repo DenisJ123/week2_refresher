@@ -8,17 +8,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class Controller {
-    private List<Product> products = new ArrayList<Product>();
+    private List<Product> products = new ArrayList<>();
+    Service service = new Service();
 
     @GetMapping("/get")
     public List<Product> getProducts() {
-        return products;
+        return service.getProductList();
     }
 
     @PostMapping("/add")
     public String addProduct(@RequestBody Product product) {
         products.add(product);
-        return "Product Added";
+        return service.addProduct(product);
     }
 
 }

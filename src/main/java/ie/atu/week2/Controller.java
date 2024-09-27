@@ -40,7 +40,12 @@ public class Controller {
         } else {
             return "Product not found!"; // Handle case when no product matches the price
         }
-    }
 
+    }
+    @PutMapping("/update")
+    public String updateProduct(@RequestBody Product product) {
+        products.add(product);
+        return service.addProduct(product);
+    }
 
 }

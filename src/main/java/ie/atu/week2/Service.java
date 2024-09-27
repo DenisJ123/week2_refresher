@@ -18,4 +18,9 @@ public class Service {
         productList.remove(product);
         return "Product removed";
     }
+    public String updateProduct(Product product) {
+        int index = productList.indexOf(product);
+        productList.set(index, product);
+        return "Product updated";
+    }
 }
